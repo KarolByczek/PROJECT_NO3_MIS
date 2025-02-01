@@ -1,37 +1,43 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 
-const onClickHandler = (e:any) => {
-    e.target.style.background = "red";
-}
+const menuList =
+    [
+        { name: "GUITARS", path: "/guitars" },
+        { name: "SAXOPHONES", path: "/saxophones" },
+        { name: "DRUMS", path: "/drums" },
+        { name: "KEYBOARDS", path: "/keyboards" },
+        { name: "MICROPHONES", path: "/microphones" },
+        { name: "TRADITIONAL INSTRUMENTS", path: "/traditional_instruments" },
+        { name: "ACCESSORIES", path: "/accessories" },
+    ]
 
 const Menu = () => {
+
+    const location = useLocation();
+    const [activeLink, setActiveLink] = useState(location.pathname);
+
+    const onClickHandler = (path: string) => {
+        setActiveLink(path);
+    };
+
     return (
-        <div className='main_menu'>
-            <ul>
-                <Link className="link" to="/guitars">
-                    <div className="menu_link" onClick={onClickHandler}>GUITARS</div>
+        <div className="main_menu">
+          <ul>
+            {menuList.map(({ name, path }) => (
+              <li key={path}>
+                <Link
+                  className={`menu_link ${activeLink === path ? "active" : ""}`}
+                  to={path}
+                  onClick={() => onClickHandler(path)}
+                >
+                  {name}
                 </Link>
-                <Link className="link" to="/saxophones">
-                    <div className="menu_link" onClick={onClickHandler}>SAXOPHONES</div>
-                </Link>
-                <Link className="link" to="/drums">
-                    <div className="menu_link" onClick={onClickHandler}>DRUMS</div>
-                </Link>
-                <Link className="link" to="/keyboards">
-                    <div className="menu_link" onClick={onClickHandler}>KEYBOARDS</div>
-                </Link>
-                <Link className="link" to="/microphones">
-                    <div className="menu_link" onClick={onClickHandler}>MICROPHONES</div>
-                </Link>
-                <Link className="link" to="/traditional_instruments">
-                    <div className="menu_link" onClick={onClickHandler}>TRADITIONAL INSTRUMENTS</div>
-                </Link>
-                <Link className="link" to="/accessories">
-                    <div className="menu_link" onClick={onClickHandler}>ACCESSORIES</div>
-                </Link>
-            </ul>
+              </li>
+            ))}
+          </ul>
         </div>
-    )
+      );
 }
 
 export default Menu

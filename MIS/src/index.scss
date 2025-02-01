@@ -71,6 +71,10 @@ body {
   padding: 0.3rem 0.5rem;
 }
 
+.menu_link.active {
+  background-color: rgb(46, 154, 118);
+}
+
 .menu_link:hover {
   background-color: #141dc7
 }
