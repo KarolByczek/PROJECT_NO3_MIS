@@ -1,0 +1,28 @@
+.main_menu ul {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    list-style-type: none;
+    background-color: #000000;
+    padding: 0.5rem 0 0.5rem 3rem;
+    margin: 0;
+  }
+  
+  .main_menu ul .link {
+    margin-left: 0.5rem;
+  }
+  
+  .menu_link {
+    border-radius: 0.4rem;
+    background-color: inherit;
+    color: aliceblue;
+    padding: 0.3rem 0.5rem;
+  }
+  
+  .menu_link.active {
+    background-color: rgb(46, 154, 118);
+  }
+  
+  .menu_link:hover {
+    background-color: #141dc7
+  }
