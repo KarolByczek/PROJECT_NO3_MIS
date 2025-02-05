@@ -1,0 +1,109 @@
+.headstrip {
+    position: relative;
+    overflow: hidden;
+    top: 0;
+    width: 100%;
+    height: 4rem;
+    background-image: url(src/assets/background-wide.jpg);
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .headstrip .headstrip_subimage {
+    height: 100%;
+  }
+  
+  .headstrip .left_subimage_container {
+    position: relative;
+    width: 14%;
+    height: 100%;
+    background: inherit;
+    overflow: visible;
+  
+  }
+  
+  .headstrip .left_subimage_container .headstrip_subimage.left_subimage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 80%;
+  }
+  
+  .headstrip .left_subimage_container::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -8%;
+    width: 20%;
+    /* Adjust width for the blurry side */
+    height: 160%;
+    background: inherit;
+    /* Copy the background from the container */
+    filter: blur(8px);
+  }
+  
+  
+  .headstrip .middle_subimage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+    gap: 1rem;
+  }
+  
+  .headstrip .middle_subimage img {
+    height: 100%;
+    width: auto;
+  }
+  
+  .headstrip .middle_subimage p {
+    font-weight: 700;
+    font-size: larger;
+    color: aliceblue;
+  }
+  
+  .headstrip .right_subimage_container {
+    position: relative;
+    width: 14%;
+    height: 100%;
+    background: inherit;
+    overflow: visible;
+  }
+  
+  .headstrip .right_subimage_container .headstrip_subimage.right_subimage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 80%;
+  }
+  
+  .headstrip .right_subimage_container::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -8%;
+    width: 20%;
+    /* Adjust width for the blurry side */
+    height: 160%;
+    background: inherit;
+    /* Copy the background from the container */
+    filter: blur(8px);
+  }
+  
+  .buy_now {
+    width: fit-content;
+    height: 70%;
+    border-radius: 5rem;
+    align-self: center;
+    font-size: large;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    color: #1a1a1a;
+    background-color: aliceblue;
+    border-color: aliceblue;
+  }
+  
+  .buy_now:hover {
+    background-color: gainsboro;
+    cursor: pointer;
+  }

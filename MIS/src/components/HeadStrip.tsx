@@ -1,5 +1,5 @@
-import React from 'react'
 import Button from './Button.tsx';
+import './HeadStrip.scss';
 
 const HeadStrip = () => {
   return (
