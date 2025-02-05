@@ -80,45 +80,6 @@ body {
 }
 
 
-.company_strip {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 3rem;
-}
-
-.company_strip .company_substrip a {
-  color: #1a1a1a;
-  margin: 0 1rem
-}
-
-.company_strip .company_substrip a:hover {
-  color: #535bf2;
-}
-
-.company_substrip_left {
-  display: flex;
-  justify-content: left;
-  margin-left: 2rem;
-  width: 30%;
-}
-
-.company_substrip_right {
-  display: flex;
-  justify-content: right;
-  margin-right: 2rem;
-  width: 30%;
-
-}
-
-.company_strip .company_icon {
-  height: 100%;
-}
-
-.company_strip .company_icon .company_icon_image {
-  width: 5rem;
-  height: 100%;
-}
 
 h1 {
   display: flex;
