@@ -1,0 +1,124 @@
+.product_strip {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .product_strip .product_substrip {
+    display: flex;
+    width: 30%;
+    gap: 1.5rem;
+    font-size: 1.2rem;
+    color: #1a1a1a;
+  }
+  
+  .product_strip .product_substrip.product_substrip_left {
+    justify-content: left;
+    align-items: center;
+    margin-left: 2rem;
+    padding: 0 1rem;
+  }
+  
+  .product_strip .product_substrip.product_substrip_middle {
+    justify-content: center;
+    padding: 0.5rem;
+  }
+  
+  .product_strip .product_substrip.product_substrip_middle input {
+    width: 100%;
+    background-color: aliceblue;
+    border-radius: 3rem;
+    color: #1a1a1a;
+    font-weight: 500;
+    font-size: large;
+    text-align: center;
+    border: none;
+    outline: none;
+  }
+  
+  .product_strip .product_substrip.product_substrip_middle input::placeholder {
+    text-align: center;
+    font-style: oblique;
+    color: gray;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right {
+    justify-content: right;
+    align-items: center;
+    margin-right: 2rem;
+    padding: 1rem;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right a.nationality-currency {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right a.nationality-currency:hover img {
+    border-color: #535bf2;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right a.nationality-currency img {
+    border-radius: 15rem;
+    padding: 0.1rem;
+    border: 0.15rem solid #1a1a1a;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  
+  .product_strip .product_substrip a {
+    color: #1a1a1a;
+  }
+  
+  .product_strip .product_substrip a:hover {
+    color: #535bf2;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right a.shopper-account {
+    display: flex;
+    align-items: center;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right a.shopper-account svg {
+    height: 2rem;
+    width: auto;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right a.shopper-account svg:hover path {
+    fill: #535bf2;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right a.wish-list {
+    display: flex;
+    align-items: center;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right a.wish-list svg {
+    height: 2rem;
+    width: 2rem;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right a.wish-list svg:hover path {
+    fill: #535bf2;
+    ;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right a.shopping-cart {
+    display: flex;
+    align-items: center;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right a.shopping-cart svg {
+    height: 2rem;
+    width: 2rem;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right a.shopping-cart svg:hover path {
+    fill: #535bf2;
+    ;
+  }
+  
+  .product_strip .product_substrip.product_substrip_right a.shopping-cart svg:hover circle {
+    fill: #535bf2;
+    ;
+  }

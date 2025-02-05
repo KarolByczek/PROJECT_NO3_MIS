@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { collection, QueryDocumentSnapshot, getDocs } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-
+import './Carousel.scss';
 
 const Carousel: React.FC = () => {
 
