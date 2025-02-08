@@ -22,13 +22,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 25%;
+  width: 30%;
   height: 15rem;
   font-size: larger;
-  font-weight: 500
+  font-weight: 500;
+  text-align: center;
+  color: black;
+  border: 1px solid greenyellow;
 }
 
 .grid_menu_section .grid_menu .grid_menu_item div img {
-  height: 50%;
-  width: 50%;
+  height: 8rem;
+  width: 8rem;
 }
