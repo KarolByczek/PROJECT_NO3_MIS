@@ -1,6 +1,7 @@
 .grid_menu_section {
   margin-top: 4rem;
   color: black;
+  margin-left: 5%;
 }
 
 .grid_menu_section h1 {
@@ -9,12 +10,9 @@
 }
 
 .grid_menu_section .grid_menu {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 3rem 2rem;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  gap: 2%;
 }
 
 .grid_menu_section .grid_menu .grid_menu_item {
@@ -22,13 +20,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: 100%;
   height: 15rem;
   font-size: larger;
   font-weight: 500;
   text-align: center;
   color: black;
-  border: 1px solid greenyellow;
+  border: 1px solid rgb(109, 138, 67);
 }
 
 .grid_menu_section .grid_menu .grid_menu_item div img {
