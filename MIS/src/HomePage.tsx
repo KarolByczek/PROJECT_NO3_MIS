@@ -4,7 +4,10 @@ import Menu from './components/Menu';
 import ProductStrip from './components/ProductStrip';
 import Carousel from "./components/Carousel";
 import "./HomePage.scss"
-
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { useEffect } from 'react';
+import { collection, QueryDocumentSnapshot, getDocs } from "firebase/firestore";
 
 const instrumentIcons: any = [
   { name: "Recording Equipment", imgURL: "/instrument_icons/instrument-icon (1).png", href: "https://www.youtube.com/watch?v=FRqLYCig6wI" },
@@ -18,7 +21,43 @@ const instrumentIcons: any = [
   { name: "Drums", imgURL: "/instrument_icons/instrument-icon (9).png", href: "https://www.youtube.com/watch?v=FRqLYCig6wI" },
 ]
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyC2lYNp66IAWL-Yjzpr9WIRUuiNqMbsuJo",
+    authDomain: "mis-carousel-elements.firebaseapp.com",
+    projectId: "mis-carousel-elements",
+    storageBucket: "mis-carousel-elements.firebasestorage.app",
+    messagingSenderId: "719513831136",
+    appId: "1:719513831136:web:d26d7afb6de73d56c37285",
+    measurementId: "G-27YFNYFVH6"
+  };
+
+  // Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Initialize Firestore
+const carouselURLsDb = getFirestore(app);
+
 function HomePage() {
+
+  useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const querySnapshot = await getDocs(collection(carouselURLsDb, 'GridMenuItems'));
+          const initArray: Record<string, any>[] = [];
+          querySnapshot.forEach((doc: QueryDocumentSnapshot) => {
+            console.log(doc.id, ' => ', doc.data());
+            const docObject = doc.data();
+            initArray.push(...Object.values(docObject));
+            console.log(initArray);
+          });
+        } catch (error) {
+          console.error("Error fetching Firestore data: ", error);
+        }
+      };
+  
+      fetchData(); // Call the async function to fetch data
+    }, [getDocs]); // Empty dependency array, runs only once after component mounts
+  
 
   return (
     <>
