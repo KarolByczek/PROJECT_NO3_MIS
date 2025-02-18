@@ -8,18 +8,6 @@ import { useEffect, useState } from 'react';
 import { collection, QueryDocumentSnapshot, getDocs } from "firebase/firestore";
 import { secondaryDb } from './../AUXILIARY_OBJECTS/GridMenuItems';
 
-const instrumentIcons: any = [
-  { name: "Recording Equipment", imgURL: "/instrument_icons/instrument-icon (1).png", href: "https://www.youtube.com/watch?v=FRqLYCig6wI" },
-  { name: "DJ Equipment", imgURL: "/instrument_icons/instrument-icon (2).png", href: "https://www.youtube.com/watch?v=FRqLYCig6wI" },
-  { name: "Stage Lighting", imgURL: "/instrument_icons/instrument-icon (3).png", href: "https://www.youtube.com/watch?v=FRqLYCig6wI" },
-  { name: "Speakers", imgURL: "/instrument_icons/instrument-icon (4).png", href: "https://www.youtube.com/watch?v=FRqLYCig6wI" },
-  { name: "Software", imgURL: "/instrument_icons/instrument-icon (5).png", href: "https://www.youtube.com/watch?v=FRqLYCig6wI" },
-  { name: "Synthesizers", imgURL: "/instrument_icons/instrument-icon (6).png", href: "https://www.youtube.com/watch?v=FRqLYCig6wI" },
-  { name: "Pianos", imgURL: "/instrument_icons/instrument-icon (7).png", href: "https://www.youtube.com/watch?v=FRqLYCig6wI" },
-  { name: "Guitars", imgURL: "/instrument_icons/instrument-icon (8).png", href: "https://www.youtube.com/watch?v=FRqLYCig6wI" },
-  { name: "Drums", imgURL: "/instrument_icons/instrument-icon (9).png", href: "https://www.youtube.com/watch?v=FRqLYCig6wI" },
-]
-
 
 function HomePage() {
 
