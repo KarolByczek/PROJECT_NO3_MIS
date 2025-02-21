@@ -3,6 +3,7 @@ import HeadStrip from './components/HeadStrip';
 import Menu from './components/Menu';
 import ProductStrip from './components/ProductStrip';
 import Carousel from "./components/Carousel";
+import BestsellersList from './components/BestsellersList';
 import "./HomePage.scss"
 import { useEffect, useState } from 'react';
 import { collection, QueryDocumentSnapshot, getDocs } from "firebase/firestore";
@@ -61,7 +62,7 @@ function HomePage() {
             })}
           </div>
         </div>
-
+        <BestsellersList/>
       </section>
     </>
   )

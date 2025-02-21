@@ -33,3 +33,29 @@
   height: 8rem;
   width: 8rem;
 }
+
+.bestsellers_list {
+  margin-top: 4rem;
+  position: relative;
+}
+
+.bestsellers_list .bestsellers_switch {
+  display: flex;
+  justify-self: center;
+  gap: 2rem;
+}
+
+.bestsellers_list .slider_button {
+  position: absolute;
+  top: 0;
+  height: 3rem;
+  background-color: aquamarine;
+}
+
+.bestsellers_list .slider_button:nth-child(1) {
+  left: 0;
+}
+
+.bestsellers_list .slider_button:nth-child(2) {
+  right: 0;
+}

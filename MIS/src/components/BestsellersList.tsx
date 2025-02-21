@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Key } from "react";
 
 const BestsellersList = () => {
 
@@ -8,49 +8,48 @@ const BestsellersList = () => {
   const [startPosition, setStartPosition] = useState<number>(0);
   const sliderRef = useRef<null>(null);
   const autoSwipeInterval = useRef<any>(null);
-  const [dbdata, setDbdata] = useState<any>([]);
+  const [dbdata, setDbdata] = useState<string[]>([]);
   const totalSlides = dbdata.length;
 
- 
-const bestsellers = [
-  './../public/mock_images/1.jpg',
-  './../public/mock_images/2.jpg',
-  './../public/mock_images/3.jpg',
-  './../public/mock_images/4.jpg',
-  './../public/mock_images/5.jpg',
-  './../public/mock_images/6.jpg',
-  './../public/mock_images/7.jpg',
-  './../public/mock_images/8.jpg',
-  './../public/mock_images/9.jpg',
-  './../public/mock_images/10.jpg',
-  './../public/mock_images/11.jpg',
-  './../public/mock_images/12.jpg'
-];
 
-const trends = [
-  './../public/mock_images/1 - kopia.jpg',
-  './../public/mock_images/2 - kopia.jpg',
-  './../public/mock_images/3 - kopia.jpg',
-  './../public/mock_images/4 - kopia.jpg',
-  './../public/mock_images/5 - kopia.jpg',
-  './../public/mock_images/6 - kopia.jpg',
-  './../public/mock_images/7 - kopia.jpg',
-  './../public/mock_images/8 - kopia.jpg',
-  './../public/mock_images/9 - kopia.jpg',
-  './../public/mock_images/10 - kopia.jpg',
-  './../public/mock_images/11 - kopia.jpg',
-  './../public/mock_images/12 - kopia.jpg'
-];
-
-  // Create clones for seamless looping
-  const extendedSlides = [
-    dbdata[dbdata.length - 1], // Clone last slide at the beginning
-    ...dbdata,
-    dbdata[0], // Clone first slide at the end
-    dbdata[1],
-    dbdata[2],
-    dbdata[3]
+  const bestsellers: string[] = [
+    './../public/mock_images/1.jpg',
+    './../public/mock_images/2.jpg',
+    './../public/mock_images/3.jpg',
+    './../public/mock_images/4.jpg',
+    './../public/mock_images/5.jpg',
+    './../public/mock_images/6.jpg',
+    './../public/mock_images/7.jpg',
+    './../public/mock_images/8.jpg',
+    './../public/mock_images/9.jpg',
+    './../public/mock_images/10.jpg',
+    './../public/mock_images/11.jpg',
+    './../public/mock_images/12.jpg'
   ];
+
+  const trends: string[] = [
+    './../public/mock_images/1 - kopia.jpg',
+    './../public/mock_images/2 - kopia.jpg',
+    './../public/mock_images/3 - kopia.jpg',
+    './../public/mock_images/4 - kopia.jpg',
+    './../public/mock_images/5 - kopia.jpg',
+    './../public/mock_images/6 - kopia.jpg',
+    './../public/mock_images/7 - kopia.jpg',
+    './../public/mock_images/8 - kopia.jpg',
+    './../public/mock_images/9 - kopia.jpg',
+    './../public/mock_images/10 - kopia.jpg',
+    './../public/mock_images/11 - kopia.jpg',
+    './../public/mock_images/12 - kopia.jpg'
+  ];
+
+  const trendSetter = () => {
+    setDbdata(trends);
+  };
+
+  const bestsellerSetter = () => {
+    setDbdata(bestsellers);
+  };
+
 
   const handleNext = () => {
     if (isTransitioning) return; // Prevent multiple clicks during transition
@@ -134,7 +133,7 @@ const trends = [
 
   // Auto-swipe logic
   useEffect(() => {
-    const slider:any = sliderRef.current;
+    const slider: any = sliderRef.current;
 
     const startAutoSwipe = () => {
       autoSwipeInterval.current = setInterval(() => {
@@ -165,21 +164,27 @@ const trends = [
     };
   }, [handleNext]);
 
+
   return (
-    <div className="carousel" onMouseDown={(e) => { handleDragStart(e); e.preventDefault(); }}
+    <div className="bestsellers_list" onMouseDown={(e) => { handleDragStart(e); e.preventDefault(); }}
       onMouseMove={handleDragMove}
       onMouseUp={handleDragEnd} onTouchMove={(e) => e.preventDefault()}>
+      <h1>BESTSELLERS</h1>
+      <div className="bestsellers_switch">
+        <div onClick={trendSetter}>Trends</div>
+        <div onClick={bestsellerSetter}>Bestsellers</div>
+      </div>
       <button className="slider_button" onClick={handlePrev}><span className="text">&#10094;</span></button>
       <div
-        className="carousel-slider"
+        className="bs-slider"
         ref={sliderRef}
         style={{
           transform: `translateX(-${currentIndex * 32}%)`,
           transition: `transform 0.3s ease-in-out`
         }}
       >
-        {dbdata.map((slide, index) => (
-          <div className="carousel-slide" key={index}>
+        {dbdata.map((slide: string | undefined, index: Key | null | undefined) => (
+          <div className="bs-slide" key={index}>
             <img src={slide} alt={`Slide ${index}`} />
           </div>
         ))}
