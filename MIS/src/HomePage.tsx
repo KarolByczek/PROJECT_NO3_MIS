@@ -63,6 +63,11 @@ function HomePage() {
           </div>
         </div>
         <BestsellersList/>
+        <div className='something'>
+            <h1>
+              SECTION SOMETHING
+            </h1>
+        </div>
       </section>
     </>
   )

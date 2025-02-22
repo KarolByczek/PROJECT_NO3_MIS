@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, Key } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const BestsellersList = () => {
 
@@ -184,7 +184,7 @@ const BestsellersList = () => {
             transition: `transform 0.3s ease-in-out`
           }}
         >
-          {dbdata.map((slide: string | undefined, index: Key | null | undefined) => (
+          {dbdata.map((slide: string, index: number) => (
             <div className="bs_slide" key={index}>
               <img src={slide} alt={`Slide ${index}`} />
             </div>
@@ -192,7 +192,6 @@ const BestsellersList = () => {
         </div>
         <button className="slider_button" onClick={handleNext}><span className="text">&#10095;</span></button>
       </div>
-
     </div>
   );
 };
