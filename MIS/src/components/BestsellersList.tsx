@@ -174,22 +174,25 @@ const BestsellersList = () => {
         <button onClick={trendSetter}>Trends</button>
         <button onClick={bestsellerSetter}>Bestsellers</button>
       </div>
-      <button className="slider_button" onClick={handlePrev}><span className="text">&#10094;</span></button>
-      <div
-        className="bs_slider"
-        ref={sliderRef}
-        style={{
-          transform: `translateX(-${currentIndex * 32}%)`,
-          transition: `transform 0.3s ease-in-out`
-        }}
-      >
-        {dbdata.map((slide: string | undefined, index: Key | null | undefined) => (
-          <div className="bs_slide" key={index}>
-            <img src={slide} alt={`Slide ${index}`} />
-          </div>
-        ))}
+      <div className="slider_section">
+        <button className="slider_button" onClick={handlePrev}><span className="text">&#10094;</span></button>
+        <div
+          className="bs_slider"
+          ref={sliderRef}
+          style={{
+            transform: `translateX(-${currentIndex * 32}%)`,
+            transition: `transform 0.3s ease-in-out`
+          }}
+        >
+          {dbdata.map((slide: string | undefined, index: Key | null | undefined) => (
+            <div className="bs_slide" key={index}>
+              <img src={slide} alt={`Slide ${index}`} />
+            </div>
+          ))}
+        </div>
+        <button className="slider_button" onClick={handleNext}><span className="text">&#10095;</span></button>
       </div>
-      <button className="slider_button" onClick={handleNext}><span className="text">&#10095;</span></button>
+
     </div>
   );
 };

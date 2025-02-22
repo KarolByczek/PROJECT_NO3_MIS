@@ -39,6 +39,7 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+  height: 15rem;
   margin: 0;
   touch-action: pan-y; /* Prevent scroll conflicts */
 }
@@ -48,19 +49,24 @@
   justify-self: center;
 }
 
-.bestsellers_list .bs_slider {
-  width: 100%;
-  height: 10rem;
+.bestsellers_list .slider_section {
+ position: relative;
+ margin-top: 3rem;
+}
+
+.bestsellers_list .slider_section .bs_slider {
+  width: auto;
+  height: 100%;
   display: flex;
   margin: 0 2.5% 0 2.5%;
   cursor: grab; 
 }
 
-.bestsellers_list .bs_slider:active {
+.bestsellers_list .slider_section .bs_slider:active {
   cursor: grabbing; 
 }
 
-.bestsellers_list .bs-slider .bs_slide {
+.bestsellers_list .slider_section .bs_slider .bs_slide {
   width: 31%;
   height: 100%;
   flex: 0 0 31%;
@@ -68,14 +74,14 @@
   margin-bottom: 0;
 }
 
-.bestsellers_list .bs-slider .bs_slide img {
+.bestsellers_list .slider_section .bs_slider .bs_slide img {
   width: 100%;
   height: 100%;
   margin: 0;
   border-radius: 2rem;
 }
 
-.bestsellers_list .slider_button {
+.bestsellers_list .slider_section .slider_button {
   position: absolute;
   top: 0;
   margin: 0;
@@ -93,32 +99,32 @@
   transition: all 0.3s ease-in-out;
 }
 
-.bestsellers_list .slider_button:hover {
+.bestsellers_list .slider_section .slider_button:hover {
   background:rgb(25, 24, 24, 1);
   transition: all 0.3s ease-in-out;
 }
 
-.bestsellers_list .slider_button .text {
+.bestsellers_list .slider_section .slider_button .text {
   font-size: 1.5rem;
   transition: all 0.3 ease-in-out;
 }
 
-.bestsellers_list .slider_button:hover .text {
+.bestsellers_list .slider_section .slider_button:hover .text {
   font-size: 2rem;
   transition: all 0.3s ease-in-out;
 }
 
-.bestsellers_list .slider_button:active .text {
+.bestsellers_list .slider_section .slider_button:active .text {
   font-size: 2.5rem;
 }
 
-.bestsellers_list .slider_button:first-of-type {
+.bestsellers_list .slider_section .slider_button:first-of-type {
   left: 0;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
 }
 
-.bestsellers_list .slider_button:last-of-type {
+.bestsellers_list .slider_section .slider_button:last-of-type {
   right: 0;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
