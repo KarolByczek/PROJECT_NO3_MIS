@@ -13,33 +13,33 @@ const BestsellersList = () => {
 
 
   const bestsellers: string[] = [
-    './../public/mock_images/1.jpg',
-    './../public/mock_images/2.jpg',
-    './../public/mock_images/3.jpg',
-    './../public/mock_images/4.jpg',
-    './../public/mock_images/5.jpg',
-    './../public/mock_images/6.jpg',
-    './../public/mock_images/7.jpg',
-    './../public/mock_images/8.jpg',
-    './../public/mock_images/9.jpg',
-    './../public/mock_images/10.jpg',
-    './../public/mock_images/11.jpg',
-    './../public/mock_images/12.jpg'
+    './mock_images/1.jpg',
+    './mock_images/2.jpg',
+    './mock_images/3.jpg',
+    './mock_images/4.jpg',
+    './mock_images/5.jpg',
+    './mock_images/6.jpg',
+    './mock_images/7.jpg',
+    './mock_images/8.jpg',
+    './mock_images/9.jpg',
+    './mock_images/10.jpg',
+    './mock_images/11.jpg',
+    './mock_images/12.jpg'
   ];
 
   const trends: string[] = [
-    './../public/mock_images/1 - kopia.jpg',
-    './../public/mock_images/2 - kopia.jpg',
-    './../public/mock_images/3 - kopia.jpg',
-    './../public/mock_images/4 - kopia.jpg',
-    './../public/mock_images/5 - kopia.jpg',
-    './../public/mock_images/6 - kopia.jpg',
-    './../public/mock_images/7 - kopia.jpg',
-    './../public/mock_images/8 - kopia.jpg',
-    './../public/mock_images/9 - kopia.jpg',
-    './../public/mock_images/10 - kopia.jpg',
-    './../public/mock_images/11 - kopia.jpg',
-    './../public/mock_images/12 - kopia.jpg'
+    './mock_images/1 - kopia.jpg',
+    './mock_images/2 - kopia.jpg',
+    './mock_images/3 - kopia.jpg',
+    './mock_images/4 - kopia.jpg',
+    './mock_images/5 - kopia.jpg',
+    './mock_images/6 - kopia.jpg',
+    './mock_images/7 - kopia.jpg',
+    './mock_images/8 - kopia.jpg',
+    './mock_images/9 - kopia.jpg',
+    './mock_images/10 - kopia.jpg',
+    './mock_images/11 - kopia.jpg',
+    './mock_images/12 - kopia.jpg'
   ];
 
   const trendSetter = () => {
@@ -171,12 +171,12 @@ const BestsellersList = () => {
       onMouseUp={handleDragEnd} onTouchMove={(e) => e.preventDefault()}>
       <h1>BESTSELLERS</h1>
       <div className="bestsellers_switch">
-        <div onClick={trendSetter}>Trends</div>
-        <div onClick={bestsellerSetter}>Bestsellers</div>
+        <button onClick={trendSetter}>Trends</button>
+        <button onClick={bestsellerSetter}>Bestsellers</button>
       </div>
       <button className="slider_button" onClick={handlePrev}><span className="text">&#10094;</span></button>
       <div
-        className="bs-slider"
+        className="bs_slider"
         ref={sliderRef}
         style={{
           transform: `translateX(-${currentIndex * 32}%)`,
@@ -184,7 +184,7 @@ const BestsellersList = () => {
         }}
       >
         {dbdata.map((slide: string | undefined, index: Key | null | undefined) => (
-          <div className="bs-slide" key={index}>
+          <div className="bs_slide" key={index}>
             <img src={slide} alt={`Slide ${index}`} />
           </div>
         ))}
