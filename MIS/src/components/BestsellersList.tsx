@@ -131,39 +131,6 @@ const BestsellersList = () => {
     setIsDragging(false);
   };
 
-  // Auto-swipe logic
-  useEffect(() => {
-    const slider: any = sliderRef.current;
-
-    const startAutoSwipe = () => {
-      autoSwipeInterval.current = setInterval(() => {
-        handleNext();
-      }, 3000); // 3 seconds
-    };
-
-    const stopAutoSwipe = () => {
-      if (autoSwipeInterval.current) {
-        clearInterval(autoSwipeInterval.current);
-        autoSwipeInterval.current = null;
-      }
-    };
-
-    // Start auto-swipe
-    startAutoSwipe();
-
-    // Stop auto-swipe on user interaction
-    const interactionHandler = () => stopAutoSwipe();
-
-    slider.addEventListener("mousedown", interactionHandler); // Mouse interaction
-    slider.addEventListener("touchstart", interactionHandler); // Touch interaction
-
-    return () => {
-      stopAutoSwipe();
-      slider.removeEventListener("mousedown", interactionHandler);
-      slider.removeEventListener("touchstart", interactionHandler);
-    };
-  }, [handleNext]);
-
 
   return (
     <div className="bestsellers_list" onMouseDown={(e) => { handleDragStart(e); e.preventDefault(); }}
