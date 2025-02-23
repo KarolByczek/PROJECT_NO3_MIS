@@ -43,28 +43,32 @@ const BestsellersList = () => {
 
   const trendSwitch = () => {
     setDbdata(trends);
-    setCurrentIndex(0)
+    setCurrentIndex(currentIndex)
   };
 
   const bestsellerSwitch = () => {
     setDbdata(bestsellers);
-    setCurrentIndex(0)
+    setCurrentIndex(currentIndex)
   };
 
 
   const handleNext = () => {
+    let currentINDEX = currentIndex;
     if (isTransitioning) return; // Prevent multiple clicks during transition
     if (currentIndex < 3) {
       setIsTransitioning(true);
-      setCurrentIndex((prev) => prev + 1);
+      currentINDEX = currentINDEX + 1;
+      setCurrentIndex(currentINDEX);
     }
   }
 
   const handlePrev = () => {
+    let currentINDEX = currentIndex;
     if (isTransitioning) return; // Prevent multiple clicks during transition
     if (currentIndex > 0) {
       setIsTransitioning(true);
-      setCurrentIndex((prev) => prev - 1);
+      currentINDEX = currentINDEX - 1;
+      setCurrentIndex(currentINDEX);
     }
   }
 
