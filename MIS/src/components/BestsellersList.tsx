@@ -1,17 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 
 const BestsellersList = () => {
-
-  const [currentIndex, setCurrentIndex] = useState(1); // Start at 1 because of clones
-  const [isTransitioning, setIsTransitioning] = useState<boolean>(false); // Prevent double actions
-  const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [startPosition, setStartPosition] = useState<number>(0);
-  const sliderRef = useRef<null>(null);
-  const autoSwipeInterval = useRef<any>(null);
-  const [dbdata, setDbdata] = useState<string[]>([]);
-  const totalSlides = dbdata.length;
-
-
+  
   const bestsellers: string[] = [
     './mock_images/1.jpg',
     './mock_images/2.jpg',
@@ -42,51 +32,68 @@ const BestsellersList = () => {
     './mock_images/12 - kopia.jpg'
   ];
 
-  const trendSetter = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false); // Prevent double actions
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [startPosition, setStartPosition] = useState<number>(0);
+  const [currentBsIndex, setCurrentBsIndex] = useState<number>(0);
+  const [currentTrendsIndex, setCurrentTrendsIndex] = useState<number>(0);
+  const sliderRef = useRef<null>(null);
+  const [dbdata, setDbdata] = useState<string[]>(trends);
+  const totalSlides = dbdata.length;
+
+
+  const trendSwitch = () => {
     setDbdata(trends);
+    setCurrentIndex(currentTrendsIndex);
+    console.log(currentTrendsIndex)
   };
 
-  const bestsellerSetter = () => {
+  const bestsellerSwitch = () => {
     setDbdata(bestsellers);
+    setCurrentIndex(currentBsIndex)
   };
 
 
   const handleNext = () => {
     if (isTransitioning) return; // Prevent multiple clicks during transition
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev + 1);
+    if (currentIndex < 3) {
+      setIsTransitioning(true);
+      setCurrentIndex((prev) => prev + 1);
+    }
+    if (currentTrendsIndex < 3) {
+      setCurrentTrendsIndex((prev) => prev + 1);
+      console.log('Yes - it works!')
+    }
+    else if (currentBsIndex < 3) {
+      setCurrentBsIndex((prev) => prev + 1);
+      console.log('Yes - it works!')
+    }
   };
 
   const handlePrev = () => {
     if (isTransitioning) return; // Prevent multiple clicks during transition
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev - 1);
+    if (currentIndex >= 1) {
+      setIsTransitioning(true);
+      setCurrentIndex((prev) => prev - 1);
+    }
+    if (currentTrendsIndex > 0) {
+      setCurrentTrendsIndex((prev) => prev - 1);
+      console.log('Yes - it also works!')
+    }
+    else if (currentBsIndex > 0) {
+      setCurrentBsIndex((prev) => prev - 1);
+      console.log('Yes - it also works!')
+    }
   };
 
   useEffect(() => {
     const slider: any = sliderRef.current;
 
-    const teleport = () => {
-      if (currentIndex === 0) {
-        // Move from clone of last slide to real last slide
-        slider.style.transition = "none";
-        setCurrentIndex(totalSlides);
-      } else if (currentIndex === totalSlides + 1) {
-        // Move from clone of first slide to real first slide
-        slider.style.transition = "none";
-        setCurrentIndex(1);
-      }
 
-      setTimeout(() => {
-        // Re-enable transition for the next move
-        slider.style.transition = "transform 0.5s ease-in-out";
-        setIsTransitioning(false); // Allow future interactions
-      }, 0);
-    };
 
     // Trigger teleport after the transition completes
     const handleTransitionEnd = () => {
-      teleport();
       setIsTransitioning(false); // Allow further interactions
     };
 
@@ -138,8 +145,8 @@ const BestsellersList = () => {
       onMouseUp={handleDragEnd} onTouchMove={(e) => e.preventDefault()}>
       <h1>BESTSELLERS</h1>
       <div className="bestsellers_switch">
-        <button onClick={trendSetter}>Trends</button>
-        <button onClick={bestsellerSetter}>Bestsellers</button>
+        <button onClick={trendSwitch}>Trends</button>
+        <button onClick={bestsellerSwitch}>Bestsellers</button>
       </div>
       <div className="slider_section">
         <button className="slider_button" onClick={handlePrev}><span className="text">&#10094;</span></button>
@@ -147,7 +154,7 @@ const BestsellersList = () => {
           className="bs_slider"
           ref={sliderRef}
           style={{
-            transform: `translateX(-${currentIndex * 32}%)`,
+            transform: `translateX(-${currentIndex * 102}%)`,
             transition: `transform 0.3s ease-in-out`
           }}
         >
