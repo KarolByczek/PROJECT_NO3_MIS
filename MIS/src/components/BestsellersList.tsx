@@ -32,12 +32,10 @@ const BestsellersList = () => {
     './mock_images/12 - kopia.jpg'
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false); // Prevent double actions
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startPosition, setStartPosition] = useState<number>(0);
-  const [currentBsIndex, setCurrentBsIndex] = useState<number>(0);
-  const [currentTrendsIndex, setCurrentTrendsIndex] = useState<number>(0);
   const sliderRef = useRef<null>(null);
   const [dbdata, setDbdata] = useState<string[]>(trends);
   const totalSlides = dbdata.length;
@@ -45,13 +43,12 @@ const BestsellersList = () => {
 
   const trendSwitch = () => {
     setDbdata(trends);
-    setCurrentIndex(currentTrendsIndex);
-    console.log(currentTrendsIndex)
+    setCurrentIndex(0)
   };
 
   const bestsellerSwitch = () => {
     setDbdata(bestsellers);
-    setCurrentIndex(currentBsIndex)
+    setCurrentIndex(0)
   };
 
 
@@ -61,31 +58,15 @@ const BestsellersList = () => {
       setIsTransitioning(true);
       setCurrentIndex((prev) => prev + 1);
     }
-    if (currentTrendsIndex < 3) {
-      setCurrentTrendsIndex((prev) => prev + 1);
-      console.log('Yes - it works!')
-    }
-    else if (currentBsIndex < 3) {
-      setCurrentBsIndex((prev) => prev + 1);
-      console.log('Yes - it works!')
-    }
-  };
+  }
 
   const handlePrev = () => {
     if (isTransitioning) return; // Prevent multiple clicks during transition
-    if (currentIndex >= 1) {
+    if (currentIndex > 0) {
       setIsTransitioning(true);
       setCurrentIndex((prev) => prev - 1);
     }
-    if (currentTrendsIndex > 0) {
-      setCurrentTrendsIndex((prev) => prev - 1);
-      console.log('Yes - it also works!')
-    }
-    else if (currentBsIndex > 0) {
-      setCurrentBsIndex((prev) => prev - 1);
-      console.log('Yes - it also works!')
-    }
-  };
+  }
 
   useEffect(() => {
     const slider: any = sliderRef.current;
