@@ -42,13 +42,13 @@ const BestsellersList = () => {
 
 
   const trendSwitch = () => {
+    setCurrentIndex(currentIndex);
     setDbdata(trends);
-    setCurrentIndex(currentIndex)
   };
 
   const bestsellerSwitch = () => {
+    setCurrentIndex(currentIndex);
     setDbdata(bestsellers);
-    setCurrentIndex(currentIndex)
   };
 
 
@@ -58,6 +58,7 @@ const BestsellersList = () => {
     if (currentIndex < 3) {
       setIsTransitioning(true);
       currentINDEX = currentINDEX + 1;
+      console.log(currentINDEX);
       setCurrentIndex(currentINDEX);
     }
   }
@@ -68,6 +69,7 @@ const BestsellersList = () => {
     if (currentIndex > 0) {
       setIsTransitioning(true);
       currentINDEX = currentINDEX - 1;
+      console.log(currentINDEX);
       setCurrentIndex(currentINDEX);
     }
   }
