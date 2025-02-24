@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 
 const BestsellersList = () => {
-  
+
   const bestsellers: string[] = [
     './mock_images/1.jpg',
     './mock_images/2.jpg',
@@ -33,6 +33,9 @@ const BestsellersList = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isBSon, setisBSon] = useState<boolean>(false);
+  const [currentBSIndex, setCurrentBSIndex] = useState<number>(0);
+  const [currentTRENDIndex, setCurrentTRENDIndex] = useState<number>(0);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false); // Prevent double actions
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startPosition, setStartPosition] = useState<number>(0);
@@ -42,35 +45,55 @@ const BestsellersList = () => {
 
 
   const trendSwitch = () => {
-    setCurrentIndex(currentIndex);
+    setisBSon(false);
+    setCurrentIndex(currentTRENDIndex);
     setDbdata(trends);
   };
 
   const bestsellerSwitch = () => {
-    setCurrentIndex(currentIndex);
+    setisBSon(true);
+    setCurrentIndex(currentBSIndex);
     setDbdata(bestsellers);
   };
 
 
   const handleNext = () => {
-    let currentINDEX = currentIndex;
     if (isTransitioning) return; // Prevent multiple clicks during transition
-    if (currentIndex < 3) {
+    if (isBSon === true && currentIndex < 3) {
       setIsTransitioning(true);
-      currentINDEX = currentINDEX + 1;
-      console.log(currentINDEX);
-      setCurrentIndex(currentINDEX);
+      let temporary = currentBSIndex;
+      temporary = temporary + 1;
+      setCurrentIndex(currentIndex + 1);
+      setCurrentBSIndex(temporary);
+      console.log('Current BS Index:', currentBSIndex);
+    }
+    if (isBSon === false && currentIndex < 3) {
+      setIsTransitioning(true);
+      let temporary = currentTRENDIndex;
+      temporary = temporary + 1;
+      setCurrentIndex(currentIndex + 1);
+      setCurrentTRENDIndex(temporary);
+      console.log('Current TRENDS Index:', currentTRENDIndex);
     }
   }
 
   const handlePrev = () => {
-    let currentINDEX = currentIndex;
     if (isTransitioning) return; // Prevent multiple clicks during transition
-    if (currentIndex > 0) {
+    if (isBSon === true && currentIndex > 0) {
       setIsTransitioning(true);
-      currentINDEX = currentINDEX - 1;
-      console.log(currentINDEX);
-      setCurrentIndex(currentINDEX);
+      let temporary = currentBSIndex;
+      temporary = temporary - 1;
+      setCurrentIndex(currentIndex - 1);
+      setCurrentBSIndex(temporary);
+      console.log('Current BS Index:', currentBSIndex);
+    }
+    if (isBSon === false && currentIndex > 0) {
+      setIsTransitioning(true);
+      let temporary = currentTRENDIndex;
+      temporary = temporary - 1;
+      setCurrentIndex(currentIndex - 1);
+      setCurrentTRENDIndex(temporary);
+      console.log('Current TRENDS Index:', currentTRENDIndex);
     }
   }
 
