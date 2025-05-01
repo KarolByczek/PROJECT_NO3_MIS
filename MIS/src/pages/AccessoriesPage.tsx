@@ -9,6 +9,7 @@ import { thirdDb } from "./../../AUXILIARY_OBJECTS/PortraitsDB";
 const AccessoriesPage = () => {
 
   const [dbdata, setDbdata] = useState<any>([]);
+  console.log(thirdDb);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +23,7 @@ const AccessoriesPage = () => {
           console.log(initArray);
         });
         setDbdata(initArray);
-        console.log(initArray);
+        console.log(dbdata);
       } catch (error) {
         console.error("Error fetching Firestore data: ", error);
       }
