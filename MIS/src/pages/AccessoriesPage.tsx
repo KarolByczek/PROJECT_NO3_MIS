@@ -54,6 +54,9 @@ const AccessoriesPage = () => {
                 <p>
                   {portrait.portrait_name}
                 </p>
+                <p>
+                  {portrait.portrait_description}
+                </p>
               </div>)
           })}
         </div>
