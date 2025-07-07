@@ -17,3 +17,16 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.portraits_section .portrait .comments {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 70vh;
+    overflow-y: scroll;
+}
+
+.portraits_section .portrait .comments .comment {
+    background-color: cadetblue;
+    padding: 1rem;
+}

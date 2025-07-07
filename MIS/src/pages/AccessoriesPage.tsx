@@ -60,16 +60,21 @@ const AccessoriesPage = () => {
                     {portrait.portrait_description}
                   </p>
                 </div>
-                <div className="comments">
-                  {portrait.portrait_comments.map((acomment:string, index:number) => {
-                    return (
-                      <div className="comment" key={index}>
-                        <p>
-                        {acomment}
-                        </p>
-                      </div>
-                    )
-                  })}
+                <div className="comments_box">
+                  <h3>
+                    COMMENTS
+                  </h3>
+                  <div className="comments">
+                    {([...Object.values(portrait.portrait_comments)]).map((acomment: any, index: number) => {
+                      return (
+                        <div className="comment" key={index}>
+                          <p>
+                            {acomment}
+                          </p>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
               </div>)
           })}
