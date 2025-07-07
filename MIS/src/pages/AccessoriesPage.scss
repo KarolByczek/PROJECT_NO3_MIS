@@ -1,0 +1,19 @@
+.portraits_section .portrait {
+    width: 99vw;
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    margin-top: 2rem;
+    border: 0.2rem solid crimson;
+}
+
+.portraits_section .portrait .image {
+    height: 36rem;
+    width: 28rem;
+}
+
+.portraits_section .portrait .about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

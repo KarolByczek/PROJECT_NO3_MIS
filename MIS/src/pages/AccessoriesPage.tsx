@@ -5,6 +5,7 @@ import Menu from "../components/Menu";
 import ProductStrip from "../components/ProductStrip";
 import { collection, getDocs, QueryDocumentSnapshot } from "firebase/firestore";
 import { thirdDb } from "./../../AUXILIARY_OBJECTS/PortraitsDB";
+import "./AccessoriesPage.scss"
 
 const AccessoriesPage = () => {
 
@@ -50,13 +51,26 @@ const AccessoriesPage = () => {
           {dbdata.map((portrait: any, index: number) => {
             return (
               <div className="portrait" key={index}>
-                <img src={portrait.portrait_URL_reference} alt="apicture" />
-                <p>
-                  {portrait.portrait_name}
-                </p>
-                <p>
-                  {portrait.portrait_description}
-                </p>
+                <img className="image" src={portrait.portrait_URL_reference} alt="apicture" />
+                <div className="about">
+                  <p>
+                    <strong>{portrait.portrait_name}</strong>
+                  </p>
+                  <p>
+                    {portrait.portrait_description}
+                  </p>
+                </div>
+                <div className="comments">
+                  {portrait.portrait_comments.map((acomment:string, index:number) => {
+                    return (
+                      <div className="comment" key={index}>
+                        <p>
+                        {acomment}
+                        </p>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>)
           })}
         </div>
