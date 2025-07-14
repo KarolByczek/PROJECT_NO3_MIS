@@ -40,10 +40,6 @@ const AccessoriesPage = () => {
     if (commentmodal === false) {
       setCommentModal(true);
     }
-    else {
-      setCommentModal(false)
-    }
-    
   };
 
 
@@ -94,7 +90,8 @@ const AccessoriesPage = () => {
           })}
         </div>
         {commentmodal === true ? (
-          <AddCommentModal />
+          <AddCommentModal 
+          setter01={setCommentModal}/>
         ) : null}
       </body>
     </>
