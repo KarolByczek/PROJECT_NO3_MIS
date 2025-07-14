@@ -5,11 +5,13 @@ import Menu from "../components/Menu";
 import ProductStrip from "../components/ProductStrip";
 import { collection, getDocs, QueryDocumentSnapshot } from "firebase/firestore";
 import { thirdDb } from "./../../AUXILIARY_OBJECTS/PortraitsDB";
+import AddCommentModal from "../components/AddCommentModal";
 import "./AccessoriesPage.scss"
 
 const AccessoriesPage = () => {
 
   const [dbdata, setDbdata] = useState<object[]>([]);
+  const [commentmodal, setCommentModal] = useState<boolean>(false)
   console.log(thirdDb);
 
   useEffect(() => {
@@ -32,6 +34,17 @@ const AccessoriesPage = () => {
 
     fetchData(); // Call the async function to fetch data
   }, [setDbdata]); // Empty dependency array, runs only once after component mounts
+
+
+  const onClickHandler = () => {
+    if (commentmodal === false) {
+      setCommentModal(true);
+    }
+    else {
+      setCommentModal(false)
+    }
+    
+  };
 
 
   return (
@@ -73,13 +86,16 @@ const AccessoriesPage = () => {
                       )
                     })}
                   </div>
-                  <button className="add_button">
+                  <button className="add_button" onClick={() => onClickHandler()}>
                     ADD A COMMENT
                   </button>
                 </div>
               </div>)
           })}
         </div>
+        {commentmodal === true ? (
+          <AddCommentModal />
+        ) : null}
       </body>
     </>
   )

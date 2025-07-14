@@ -8,17 +8,22 @@
 }
 
 .portraits_section .portrait .image {
-    height: 36rem;
-    width: 28rem;
+    height: 90vh;
+    width: 33%;
 }
 
 .portraits_section .portrait .about {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 33%;
 }
 
-.portraits_section .portrait .comments {
+.portraits_section .portrait .comments_box {
+    width: 33%;
+}
+
+.portraits_section .portrait .comments_box .comments {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -37,4 +42,18 @@
     justify-self: center;
     margin-top: 2rem;
     background-color: aquamarine;
+}
+
+#add_comment_modal {
+    position: fixed;
+    top: 35vh;
+    left: 20vw;
+    right: 20vw;
+    background-color: rgb(242, 125, 86);
+    height: fit-content;
+    z-index: 5;
+    border: 0.5rem solid red;
+    border-radius: 0.3rem;
+    font-weight: bold;
+    padding: 1rem;
 }
