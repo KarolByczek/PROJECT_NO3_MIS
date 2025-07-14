@@ -61,9 +61,7 @@ const AccessoriesPage = () => {
                   </p>
                 </div>
                 <div className="comments_box">
-                  <h3>
-                    COMMENTS
-                  </h3>
+                  {[...Object.values(portrait.portrait_comments)].length > 0 ? <h3>COMMENTS:</h3> : null}
                   <div className="comments">
                     {([...Object.values(portrait.portrait_comments)]).map((acomment: any, index: number) => {
                       return (
@@ -75,6 +73,9 @@ const AccessoriesPage = () => {
                       )
                     })}
                   </div>
+                  <button className="add_button">
+                    ADD A COMMENT
+                  </button>
                 </div>
               </div>)
           })}
