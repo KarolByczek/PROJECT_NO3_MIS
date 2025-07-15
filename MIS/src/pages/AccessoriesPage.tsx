@@ -76,7 +76,10 @@ const AccessoriesPage = () => {
                       return (
                         <div className="comment" key={index}>
                           <p>
-                            {acomment}
+                            {acomment.content}
+                          </p>
+                          <p>
+                            {acomment.signature}
                           </p>
                         </div>
                       )

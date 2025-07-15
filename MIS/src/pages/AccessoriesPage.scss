@@ -57,3 +57,8 @@
     font-weight: bold;
     padding: 1rem;
 }
+
+#add_comment_modal form {
+    display: flex;
+    flex-direction: column;
+}
