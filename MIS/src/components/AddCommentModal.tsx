@@ -1,16 +1,40 @@
+import { collection, doc, setDoc } from "firebase/firestore";
+import { thirdDb } from "../../AUXILIARY_OBJECTS/PortraitsDB";
 
-const AddCommentModal = (props:any) => {
+const AddCommentModal = (props: any) => {
+
+    const collectionRef = collection(thirdDb, "PortraitData");
+
+    function makeComment(formdata: any) {
+        return {
+            id: Date.now().toString(),
+            content: formdata.get("the_content"),
+            signature: formdata.get("the_signature")
+        };
+    }
+
+    const handleAddComment = async (event: any) => {
+        event.preventDefault();
+        props.setter01(false);
+        const form = event.target;
+        const specformdata = new FormData(form);
+        const specComment = makeComment(specformdata);
+
+        const CommentRef = doc(collectionRef, specComment.id);
+
+        try {
+            await setDoc(CommentRef, specComment);
+        } catch (error) {
+            console.error("Error adding comment: ", error);
+        }
+    };
+
     return (
         <div id='add_comment_modal'>
-            <form action="post">
-                <label htmlFor="the_comment">Your Comment<textarea id='the_comment'/></label>
-                <label htmlFor="the_signature">Your Signature<input id='the_signature' type="text" /></label>
-                <button 
-                onClick={(event) => {
-                    event.preventDefault;
-                    
-                    props.setter01(false);
-                }}>
+            <form className="add_employee_form" onSubmit={handleAddComment}>
+                <label htmlFor="the_content">Your Comment<textarea name='the_content' /></label>
+                <label htmlFor="the_signature">Your Signature<input name='the_signature' type="text" /></label>
+                <button type="submit">
                     SUBMIT
                 </button>
             </form>
@@ -18,7 +42,7 @@ const AddCommentModal = (props:any) => {
                 onClick={() => {
                     props.setter01(false);
                 }}>
-                    IF YOU'D RATHER KEEP IT TO YOURSELF, THIS IS THE CHANCE
+                IF YOU'D RATHER KEEP IT TO YOURSELF, THIS IS THE CHANCE
             </button>
         </div>
     )

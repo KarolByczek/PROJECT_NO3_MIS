@@ -94,7 +94,9 @@ const AccessoriesPage = () => {
         </div>
         {commentmodal === true ? (
           <AddCommentModal 
-          setter01={setCommentModal}/>
+          setter01={setCommentModal}
+          thirdDb={thirdDb}
+          />
         ) : null}
       </body>
     </>
