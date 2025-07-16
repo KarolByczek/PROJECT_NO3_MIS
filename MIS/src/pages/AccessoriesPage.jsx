@@ -13,6 +13,7 @@ const AccessoriesPage = () => {
 
   const [dbdata, setDbdata] = useState([]);
   const [commentmodal, setCommentModal] = useState(false);
+  const { currentPortrait, setCurrentPortrait } = useCurrentPortrait({})
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,15 +36,13 @@ const AccessoriesPage = () => {
     fetchData(); // Call the async function to fetch data
   }, [setDbdata]); // Empty dependency array, runs only once after component mounts
 
-  const MyConnectionFunction = () => {
-    const { currentPortrait, setCurrentPortrait } = useCurrentPortrait();
-
+  
     const onClickHandler = (current_one) => {
-      if (commentmodal === false) {
+      
         setCommentModal(true);
         setCurrentPortrait(current_one);
         console.log(currentPortrait)
-      }
+      
     };
 
 
@@ -106,6 +105,5 @@ const AccessoriesPage = () => {
       </>
     )
   }
-}
 
 export default AccessoriesPage;

@@ -29,7 +29,7 @@ const AddCommentModal = (props) => {
 
             try {
                 await updateDoc(CommentRef, {
-                    [`${currentPortrait.content}.portrait_comments.${commentKey}`]: specComment
+                    [`${currentPortrait}.portrait_comments.${commentKey}`]: specComment
                 });
             } catch (error) {
                 console.error("Error adding comment: ", error);
