@@ -1,9 +1,9 @@
-import { collection, doc, setDoc } from "firebase/firestore";
+import { doc, updateDoc, setDoc } from "firebase/firestore";
 import { thirdDb } from "../../AUXILIARY_OBJECTS/PortraitsDB";
 
 const AddCommentModal = (props: any) => {
 
-    const collectionRef = collection(thirdDb, "PortraitData");
+    //const collectionRef = collection(thirdDb, "PortraitData");
 
     function makeComment(formdata: any) {
         return {
@@ -20,10 +20,11 @@ const AddCommentModal = (props: any) => {
         const specformdata = new FormData(form);
         const specComment = makeComment(specformdata);
 
-        const CommentRef = doc(collectionRef, specComment.id);
+        const CommentRef = doc(thirdDb, "PortraitData", "NsXOGRWHw71ZuLGxy2BQ", props.portrait.portrait_comments);
+        
 
         try {
-            await setDoc(CommentRef, specComment);
+            await updateDoc(CommentRef, specComment);
         } catch (error) {
             console.error("Error adding comment: ", error);
         }

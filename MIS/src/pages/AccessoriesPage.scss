@@ -44,7 +44,7 @@
     background-color: aquamarine;
 }
 
-#add_comment_modal {
+.portraits_section #add_comment_modal {
     position: fixed;
     top: 35vh;
     left: 20vw;
@@ -58,7 +58,7 @@
     padding: 1rem;
 }
 
-#add_comment_modal form {
+.portraits_section #add_comment_modal form {
     display: flex;
     flex-direction: column;
 }
