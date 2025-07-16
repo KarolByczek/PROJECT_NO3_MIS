@@ -13,22 +13,26 @@ const AddCommentModal = (props: any) => {
         };
     }
 
-    const handleAddComment = async (event: any) => {
-        event.preventDefault();
-        props.setter01(false);
-        const form = event.target;
-        const specformdata = new FormData(form);
-        const specComment = makeComment(specformdata);
+const handleAddComment = async (event: any) => {
+    event.preventDefault();
+    props.setter01(false);
 
-        const CommentRef = doc(thirdDb, "PortraitData", "NsXOGRWHw71ZuLGxy2BQ", props.portrait.portrait_comments);
-        
+    const form = event.target;
+    const specformdata = new FormData(form);
+    const specComment = makeComment(specformdata);
 
-        try {
-            await updateDoc(CommentRef, specComment);
-        } catch (error) {
-            console.error("Error adding comment: ", error);
-        }
-    };
+    const CommentRef = doc(thirdDb, "PortraitData", "NsXOGRWHw71ZuLGxy2BQ");
+
+    const commentKey = `comment_${Date.now()}`; // or use a UUID
+
+    try {
+        await updateDoc(CommentRef, {
+            [`${props.portraitKey}.portrait_comments.${commentKey}`]: specComment
+        });
+    } catch (error) {
+        console.error("Error adding comment: ", error);
+    }
+};
 
     return (
         <div id='add_comment_modal'>
