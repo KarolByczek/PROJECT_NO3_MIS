@@ -3,7 +3,7 @@ import CompanyStrip from "../components/CompanyStrip";
 import HeadStrip from "../components/HeadStrip";
 import Menu from "../components/Menu";
 import ProductStrip from "../components/ProductStrip";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { getDoc, doc} from "firebase/firestore";
 import { thirdDb } from "./../../AUXILIARY_OBJECTS/PortraitsDB";
 import AddCommentModal from "../components/AddCommentModal";
@@ -86,7 +86,7 @@ useEffect(() => {
         {dbdata.map((portrait, index) => {
           return (
             <div className="portrait" key={index}>
-              <img className="image" src={portrait.portrait_URL_reference} alt="apicture" />
+              <img className="image" src={portrait.portrait_URL} alt="apicture" />
               <div className="about">
                 <p>
                   <strong>{portrait.portrait_name}</strong>
