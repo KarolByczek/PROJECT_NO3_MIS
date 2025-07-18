@@ -3,7 +3,8 @@ import CompanyStrip from "../components/CompanyStrip";
 import HeadStrip from "../components/HeadStrip";
 import Menu from "../components/Menu";
 import ProductStrip from "../components/ProductStrip";
-import { collection, getDocs, QueryDocumentSnapshot } from "firebase/firestore";
+import { Helmet } from "react-helmet";
+import { getDoc, doc} from "firebase/firestore";
 import { thirdDb } from "./../../AUXILIARY_OBJECTS/PortraitsDB";
 import AddCommentModal from "../components/AddCommentModal";
 import { useCurrentPortrait } from "../components/CurrentPortraitContext";
@@ -15,95 +16,117 @@ const AccessoriesPage = () => {
   const [commentmodal, setCommentModal] = useState(false);
   const { currentPortrait, setCurrentPortrait } = useCurrentPortrait({})
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(thirdDb, 'PortraitData'));
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const docRef = doc(thirdDb, "PortraitData", "NsXOGRWHw71ZuLGxy2BQ");
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const docData = docSnap.data(); // ✅ This is your big portrait object
+
         const initArray = [];
-        querySnapshot.forEach((doc) => {
-          console.log(doc.id, ' => ', doc.data());
-          const docObject = doc.data();
-          initArray.push(...Object.values(docObject));
-          console.log(dbdata);
+        Object.entries(docData).forEach(([key, value]) => {
+          initArray.push({ ...value, portraitKey: key });
         });
+
         setDbdata(initArray);
-        console.log(initArray);
-      } catch (error) {
-        console.error("Error fetching Firestore data: ", error);
+      } else {
+        console.error("Document does not exist!");
       }
-    };
+    } catch (error) {
+      console.error("Error fetching Firestore data: ", error);
+    }
+  };
 
-    fetchData(); // Call the async function to fetch data
-  }, [setDbdata]); // Empty dependency array, runs only once after component mounts
-
-  
-    const onClickHandler = (current_one) => {
-      
-        setCommentModal(true);
-        setCurrentPortrait(current_one);
-        console.log(currentPortrait)
-      
-    };
+  fetchData();
+}, []);
 
 
-    return (
-      <>
-        <head>
-          <title>ACCESSORIES PAGE</title>
-        </head>
-        <body>
-          <HeadStrip />
-          <CompanyStrip />
-          <ProductStrip />
-          <Menu />
-          <h1>
-            ACCESSORIES PAGE
-          </h1>
-          <div className="portraits_section">
-            {dbdata.map((portrait, index) => {
-              return (
-                <div className="portrait" key={index}>
-                  <img className="image" src={portrait.portrait_URL_reference} alt="apicture" />
-                  <div className="about">
-                    <p>
-                      <strong>{portrait.portrait_name}</strong>
-                    </p>
-                    <p>
-                      {portrait.portrait_description}
-                    </p>
-                  </div>
-                  <div className="comments_box">
-                    {[...Object.values(portrait.portrait_comments)].length > 0 ? <h3>COMMENTS:</h3> : null}
-                    <div className="comments">
-                      {([...Object.values(portrait.portrait_comments)]).map((acomment, index) => {
-                        return (
-                          <div className="comment" key={index}>
-                            <p>
-                              {acomment.content}
-                            </p>
-                            <p>
-                              {acomment.signature}
-                            </p>
-                          </div>
-                        )
-                      })}
-                    </div>
-                    <button className="add_button" onClick={() => onClickHandler(portrait)}>
-                      ADD A COMMENT
-                    </button>
-                  </div>
-                </div>)
-            })}
-          </div>
-          {commentmodal === true ? (
-            <AddCommentModal
-              setter01={setCommentModal}
-              thirdDb={thirdDb}
-            />
-          ) : null}
-        </body>
-      </>
-    )
-  }
+  const onClickHandler = (current_one) => {
+    setCommentModal(true);
+    setCurrentPortrait(current_one);
+    console.log(currentPortrait)
+  };
+
+  const addCommentToPortrait = (portraitKey, newComment) => {
+  const commentKey = `comment_${Date.now()}`;
+
+  setDbdata((prevData) =>
+    prevData.map((portrait) => {
+      if (portrait.portraitKey === portraitKey) {
+        return {
+          ...portrait,
+          portrait_comments: {
+            ...portrait.portrait_comments,
+            [commentKey]: newComment
+          }
+        };
+      }
+      return portrait;
+    })
+  );
+};
+
+
+  return (
+    <>
+      <Helmet>
+        <title>ACCESSORIES PAGE</title>
+      </Helmet>
+      <HeadStrip />
+      <CompanyStrip />
+      <ProductStrip />
+      <Menu />
+      <h1>
+        ACCESSORIES PAGE
+      </h1>
+      <div className="portraits_section">
+        {dbdata.map((portrait, index) => {
+          return (
+            <div className="portrait" key={index}>
+              <img className="image" src={portrait.portrait_URL_reference} alt="apicture" />
+              <div className="about">
+                <p>
+                  <strong>{portrait.portrait_name}</strong>
+                </p>
+                <p>
+                  {portrait.portrait_description}
+                </p>
+              </div>
+              <div className="comments_box">
+                {[...Object.values(portrait.portrait_comments)].length > 0 ? <h3>COMMENTS:</h3> : null}
+                <div className="comments">
+                  {([...Object.values(portrait.portrait_comments)]).map((acomment, index) => {
+                    return (
+                      <div className="comment" key={index}>
+                        <p>
+                          {acomment.content}
+                        </p>
+                        <p>
+                          {acomment.signature}
+                        </p>
+                      </div>
+                    )
+                  })}
+                </div>
+                <button className="add_button" onClick={() => onClickHandler(portrait)}>
+                  ADD A COMMENT
+                </button>
+              </div>
+            </div>)
+        })}
+      </div>
+      {commentmodal === true ? (
+        <AddCommentModal
+          setter01={setCommentModal}
+          setter02={addCommentToPortrait}
+        />
+      ) : null}
+
+    </>
+  )
+}
 
 export default AccessoriesPage;
