@@ -6,7 +6,8 @@ import { useState } from "react";
 const AddCommentModal = (props) => {
     const { currentPortrait } = useCurrentPortrait();
     const portraitKey = currentPortrait?.portraitKey;
-    const [success, setSuccess] = useState(false); // ✅ Add this
+    const [success, setSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     if (!portraitKey) {
         console.error("No portraitKey found in currentPortrait");
@@ -22,6 +23,7 @@ const AddCommentModal = (props) => {
 
     const handleAddComment = async (event) => {
         event.preventDefault();
+        setLoading(true); // ⏳ Start loading
 
         const form = event.target;
         const specformdata = new FormData(form);
@@ -47,6 +49,9 @@ const AddCommentModal = (props) => {
         } catch (error) {
             console.error("Error adding comment: ", error);
         }
+        finally {
+            setLoading(false); // ✅ Always stop loading
+        }
     };
 
     return (
@@ -66,7 +71,9 @@ const AddCommentModal = (props) => {
                             Your Signature
                             <input name='the_signature' type="text" required />
                         </label>
-                        <button type="submit">SUBMIT</button>
+                        <button type="submit" disabled={loading}>
+                            {loading ? "Submitting..." : "SUBMIT"}
+                        </button>
                     </form>
                     <button onClick={() => props.setter01(false)}>
                         IF YOU'D RATHER KEEP IT TO YOURSELF, THIS IS THE CHANCE

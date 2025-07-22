@@ -64,17 +64,27 @@
 }
 
 #add_comment_modal .success-message {
-  background: #d4edda;
-  color: #155724;
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-  font-weight: bold;
-  margin: 1rem 0;
-  animation: fadeIn 0.3s ease-in-out;
+    background: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    margin: 1rem 0;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0 }
-  to { opacity: 1 }
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+#add_comment_modal form button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
