@@ -36,6 +36,18 @@
     padding: 1rem;
 }
 
+.portraits_section .portrait .comments_box .comments .comment .signature {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.portraits_section .portrait .comments_box .comments .comment .date {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
 .portraits_section .portrait .comments_box .add_button {
     display: flex;
     flex-direction: row;

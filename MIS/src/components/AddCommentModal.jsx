@@ -16,6 +16,7 @@ const AddCommentModal = (props) => {
 
     function makeComment(formdata) {
         return {
+            id: Date.now().toString(),
             content: formdata.get("the_content"),
             signature: formdata.get("the_signature")
         };
@@ -69,7 +70,7 @@ const AddCommentModal = (props) => {
                         </label>
                         <label htmlFor="the_signature">
                             Your Signature
-                            <input name='the_signature' type="text" required />
+                            <input name='the_signature' type="text" required placeholder="Your name or nickname (maximum 30 characters)" maxLength={30}/>
                         </label>
                         <button type="submit" disabled={loading}>
                             {loading ? "Submitting..." : "SUBMIT"}
