@@ -11,7 +11,7 @@ const AddCommentModal = (props) => {
 
     if (!portraitKey) {
         console.error("No portraitKey found in currentPortrait");
-        return;
+        return null;
     }
 
     function makeComment(formdata) {
@@ -24,34 +24,33 @@ const AddCommentModal = (props) => {
 
     const handleAddComment = async (event) => {
         event.preventDefault();
-        setLoading(true); // ⏳ Start loading
+        setLoading(true);
 
         const form = event.target;
         const specformdata = new FormData(form);
         const specComment = makeComment(specformdata);
 
         const CommentRef = doc(thirdDb, "PortraitData", "NsXOGRWHw71ZuLGxy2BQ");
-
-        const commentKey = `comment_${Date.now()}`; // or use a UUID
+        const commentKey = `comment_${Date.now()}`;
 
         try {
             await updateDoc(CommentRef, {
                 [`${portraitKey}.portrait_comments.${commentKey}`]: specComment
             });
-            // ✅ Update local UI immediately
+
             props.setter02(portraitKey, specComment);
             console.log("Comment added successfully!");
-            setSuccess(true); // ✅ Show success message
-            // Optional: hide modal after 2 seconds
+            setSuccess(true);
+            form.reset(); // ✅ Clear form after success
+
             setTimeout(() => {
                 props.setter01(false);
             }, 2000);
-
         } catch (error) {
             console.error("Error adding comment: ", error);
-        }
-        finally {
-            setLoading(false); // ✅ Always stop loading
+        } finally {
+            setLoading(false);
+            localStorage.setItem("signature", specComment.signature);
         }
     };
 
@@ -70,7 +69,13 @@ const AddCommentModal = (props) => {
                         </label>
                         <label htmlFor="the_signature">
                             Your Signature
-                            <input name='the_signature' type="text" required placeholder="Your name or nickname (maximum 30 characters)" maxLength={30}/>
+                            <input
+                                name='the_signature'
+                                type="text"
+                                required
+                                placeholder="Your name or nickname (maximum 30 characters)"
+                                maxLength={30}
+                            />
                         </label>
                         <button type="submit" disabled={loading}>
                             {loading ? "Submitting..." : "SUBMIT"}
